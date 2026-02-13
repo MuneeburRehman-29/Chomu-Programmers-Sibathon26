@@ -1,8 +1,8 @@
 'use client' // Required for State
 
 import { useState } from 'react';
-import InputSection from './components/InputSection';
-import ResultsDisplay from './components/ResultsDisplay';
+import InputSection from '../components/InputSection';
+import ResultsDisplay from '../components/ResultsDisplay';
 import { dummyResponse } from './fakeData'; // Your fake data
 
 export default function Home() {
