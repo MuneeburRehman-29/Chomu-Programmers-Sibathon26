@@ -16,11 +16,28 @@ export default function InputPage() {
   };
 
   return (
-    <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-xl bg-secondary-bg rounded-2xl shadow-lg p-8 flex flex-col gap-6">
-        <h1 className="text-4xl font-extrabold text-accent mb-2 text-center">Smart-Response HQ</h1>
-        <p className="text-text-secondary text-center mb-4">Enter your prompt below to get started.</p>
-        <InputSection onAnalyze={handleAnalyze} loading={loading} />
+    // Added a gradient background and overflow-hidden to handle decorative elements
+    <main className="min-h-screen bg-gradient-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      
+      {/* Decorative background glow for depth */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+
+      {/* Card Container */}
+      <div className="w-full max-w-xl relative z-10">
+        <div className="bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-[2.5rem] shadow-2xl p-10 flex flex-col gap-8">
+          
+          <div className="space-y-2">
+            <h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 text-center tracking-tight">
+              Smart-Response HQ
+            </h1>
+            <p className="text-text-secondary text-lg text-center font-medium">
+              Enter your prompt below to get started.
+            </p>
+          </div>
+
+          <InputSection onAnalyze={handleAnalyze} loading={loading} />
+          
+        </div>
       </div>
     </main>
   );
