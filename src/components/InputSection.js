@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function InputSection({ onAnalyze, loading }) {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleAnalyze = () => {
     if (onAnalyze && email.trim()) {
@@ -10,11 +10,11 @@ export default function InputSection({ onAnalyze, loading }) {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <div className="mb-6">
-        <label 
-          htmlFor="customerEmail" 
-          className="block text-lg font-semibold text-gray-700 mb-2"
+    <div className="flex flex-col gap-6">
+      <div>
+        <label
+          htmlFor="customerEmail"
+          className="block text-lg font-semibold text-blue-700 mb-2"
         >
           Customer Email
         </label>
@@ -23,15 +23,14 @@ export default function InputSection({ onAnalyze, loading }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
-          className="w-full h-64 p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all resize-none disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-800"
+          className="w-full h-48 p-4 border-2 border-blue-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none transition-all resize-none disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-800 shadow-sm"
           placeholder="Paste the customer email content here..."
         />
       </div>
-      
       <button
         onClick={handleAnalyze}
         disabled={loading || !email.trim()}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md"
       >
         {loading ? (
           <>
@@ -39,7 +38,7 @@ export default function InputSection({ onAnalyze, loading }) {
             <span>Analyzing...</span>
           </>
         ) : (
-          'Analyze Email'
+          "Analyze Email"
         )}
       </button>
     </div>

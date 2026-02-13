@@ -7,29 +7,28 @@ export default function ResultsDisplay({ data }) {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       {/* Header with Urgency Badge */}
-      <div className="flex justify-between items-center border-b pb-4">
+      <div className="flex flex-col md:flex-row justify-between items-center border-b pb-6 gap-4">
         <div>
-          <h2 className="text-xl font-bold text-gray-800">Analysis Results</h2>
-          <p className="text-sm text-gray-500">Detected Sentiment: <span className="font-medium text-gray-800">{data.sentiment}</span></p>
+          <h2 className="text-2xl font-extrabold text-blue-700 mb-1">Analysis Results</h2>
+          <p className="text-base text-gray-600">Detected Sentiment: <span className="font-semibold text-gray-800">{data.sentiment}</span></p>
         </div>
-        <div className={`px-4 py-2 rounded-full border font-bold ${getBadgeColor(data.urgency)}`}>
+        <div className={`px-6 py-2 rounded-full border-2 font-bold text-lg shadow-sm ${getBadgeColor(data.urgency)}`}>
           Urgency: {data.urgency}/100
         </div>
       </div>
 
       {/* Response Cards */}
       <div className="space-y-4">
-        <h3 className="font-semibold text-gray-700">Recommended Drafts:</h3>
-        
+        <h3 className="font-semibold text-blue-700 text-lg">Recommended Drafts:</h3>
         <div className="grid gap-4">
           {Object.entries(data.drafts).map(([key, text]) => (
-            <div key={key} className="p-4 border rounded-lg hover:border-blue-400 cursor-pointer transition-colors bg-gray-50">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 block">
+            <div key={key} className="p-5 border-2 border-blue-100 rounded-xl hover:border-blue-400 cursor-pointer transition-colors bg-blue-50 shadow-sm">
+              <span className="text-xs font-bold uppercase tracking-wider text-blue-400 mb-1 block">
                 {key}
               </span>
-              <p className="text-gray-800 text-sm leading-relaxed">{text}</p>
+              <p className="text-gray-800 text-base leading-relaxed">{text}</p>
             </div>
           ))}
         </div>
