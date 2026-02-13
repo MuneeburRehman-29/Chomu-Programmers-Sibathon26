@@ -1,47 +1,44 @@
 "use server";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
 import { supabase } from "@/app/lib/supabase";
-// Setup Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
-  generationConfig: { responseMimeType: "application/json" }, // Force JSON response
-});
+
+// Setup Groq
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 // ACTION 1: Analyze the text
 export async function analyzeTicket(text) {
-  if (!text) return { error: "No text provided" };
+  if (!text) return { success: false, error: "No text provided" };
 
   try {
-    const prompt = `
-  SYSTEM INSTRUCTIONS:
-  You are a customer support AI. 
-  Return a JSON object with exactly these keys:
-      1. "urgency": (integer 0-100)
-      2. "sentiment": (string, e.g., "Angry", "Frustrated", "Calm")
-      3. "drafts": (object with keys: "empathetic", "professional", "concise").
-         - "empathetic": A very apologetic response.
-         - "professional": A solution-focused response.
-         - "concise": A short, direct response (max 2 sentences).
+    const result = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      messages: [
+        {
+          role: "system",
+          content: `You are a customer support AI. 
+Return a JSON object with exactly these keys:
+1. "urgency": (integer 0-100)
+2. "sentiment": (string, e.g., "Angry", "Frustrated", "Calm")
+3. "drafts": (object with keys: "empathetic", "professional", "concise").
+   - "empathetic": A very apologetic response.
+   - "professional": A solution-focused response.
+   - "concise": A short, direct response (max 2 sentences).
+Return ONLY valid JSON, no extra text.`,
+        },
+        { role: "user", content: text },
+      ],
+      response_format: { type: "json_object" },
+    });
 
-  USER INPUT TO ANALYZE:
-  """${text}"""
-`;
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const textResponse = response.text();
+    const data = JSON.parse(result.choices[0].message.content);
 
-    // Parse the JSON string from Gemini
-    const data = JSON.parse(textResponse);
-
-    // Simple validation
     if (!data.drafts || !data.drafts.empathetic) {
       throw new Error("AI returned incomplete data");
     }
-    return { success: true, data: data };
+    return { success: true, data };
   } catch (error) {
-    console.error("Gemini AI Error:", error);
+    console.error("Groq AI Error:", error);
     return { success: false, error: "Failed to generate response" };
   }
 }
