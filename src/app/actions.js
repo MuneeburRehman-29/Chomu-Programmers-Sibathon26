@@ -1,8 +1,7 @@
 "use server";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { supabase } from "@/lib/supabase";
-
+import { supabase } from "@/app/lib/supabase";
 // Setup Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
