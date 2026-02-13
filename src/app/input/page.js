@@ -16,10 +16,10 @@ export default function InputPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-100 flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-xl bg-white rounded-2xl shadow-lg p-8 flex flex-col gap-6">
-        <h1 className="text-4xl font-extrabold text-blue-700 mb-2 text-center">Smart-Response HQ</h1>
-        <p className="text-gray-500 text-center mb-4">Enter your prompt below to get started.</p>
+    <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-xl bg-secondary-bg rounded-2xl shadow-lg p-8 flex flex-col gap-6">
+        <h1 className="text-4xl font-extrabold text-accent mb-2 text-center">Smart-Response HQ</h1>
+        <p className="text-text-secondary text-center mb-4">Enter your prompt below to get started.</p>
         <InputSection onAnalyze={handleAnalyze} loading={loading} />
       </div>
     </main>
