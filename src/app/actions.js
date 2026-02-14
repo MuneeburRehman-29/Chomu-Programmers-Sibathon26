@@ -36,6 +36,18 @@ Return ONLY valid JSON, no extra text.`,
     if (!data.drafts || !data.drafts.empathetic) {
       throw new Error("AI returned incomplete data");
     }
+
+    // Normalize drafts: ensure each draft is an object with { preview, full }
+    for (const key of Object.keys(data.drafts)) {
+      const val = data.drafts[key];
+      if (typeof val === "string") {
+        data.drafts[key] = {
+          preview: val.length > 120 ? val.substring(0, 120) + "..." : val,
+          full: val,
+        };
+      }
+    }
+
     return { success: true, data };
   } catch (error) {
     console.error("Groq AI Error:", error);
@@ -48,6 +60,7 @@ export async function saveTicket(ticketData) {
   const { error } = await supabase.from("tickets").insert([
     {
       customer_text: ticketData.originalText,
+      email: ticketData.email,
       urgency: ticketData.urgency,
       sentiment: ticketData.sentiment,
       drafts: ticketData.drafts,
@@ -61,4 +74,59 @@ export async function saveTicket(ticketData) {
   }
 
   return { success: true };
+}
+
+// Create a pending ticket (no AI analysis yet)
+export async function createPendingTicket(email, text) {
+  const { error } = await supabase.from("tickets").insert([
+    {
+      email,
+      customer_text: text,
+      urgency: null,
+      sentiment: null,
+      drafts: null,
+      final_response: null,
+    },
+  ]);
+
+  if (error) {
+    console.error("DB Error:", error);
+    return { success: false, error: error.message };
+  }
+
+  return { success: true };
+}
+
+// Update a ticket with AI analysis results
+export async function updateTicketAnalysis(ticketId, analysis) {
+  const { error } = await supabase
+    .from("tickets")
+    .update({
+      urgency: analysis.urgency,
+      sentiment: analysis.sentiment,
+      drafts: analysis.drafts,
+    })
+    .eq("id", ticketId);
+
+  if (error) {
+    console.error("DB Error:", error);
+    return { success: false, error: error.message };
+  }
+
+  return { success: true };
+}
+
+// Fetch all tickets from the database
+export async function fetchAllTickets() {
+  const { data, error } = await supabase
+    .from("tickets")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("DB Error:", error);
+    return { success: false, error: error.message };
+  }
+
+  return { success: true, data };
 }
