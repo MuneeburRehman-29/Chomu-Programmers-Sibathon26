@@ -42,8 +42,8 @@ export default function DraftPage({ params }) {
 
   if (!data) {
     return (
-      <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-        <p className="text-text-secondary">Loading...</p>
+      <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+        <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
       </main>
     );
   }
@@ -52,11 +52,12 @@ export default function DraftPage({ params }) {
 
   if (!draft) {
     return (
-      <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-        <div className="w-full max-w-xl bg-secondary-bg rounded-2xl shadow-lg p-8 text-center">
+      <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-150 bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+        <div className="w-full max-w-xl relative z-10 bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-8 text-center">
           <h1 className="text-2xl font-bold text-text-primary mb-4">Draft not found</h1>
           <Link href="/result" className="text-accent hover:text-accent-hover hover:underline transition-colors">
-            Back to Results
+            ← Back to Results
           </Link>
         </div>
       </main>
@@ -111,14 +112,15 @@ export default function DraftPage({ params }) {
   };
 
   return (
-    <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-2xl bg-secondary-bg rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6">
+    <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-150 bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+      <div className="w-full max-w-2xl relative z-10 bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold uppercase tracking-wider text-accent">
             {key} draft
           </span>
           <Link href="/result" className="text-text-muted hover:text-accent text-sm transition-colors">
-            &larr; Back to Results
+            ← Back to Results
           </Link>
         </div>
         <div className="border-t border-elevated pt-6">

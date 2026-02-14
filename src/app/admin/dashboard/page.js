@@ -135,8 +135,8 @@ export default function AdminDashboardPage() {
 
         {/* Loading State */}
         {loadingDb && (
-          <div className="text-center py-20">
-            <p className="text-text-secondary">Loading tickets...</p>
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
           </div>
         )}
 

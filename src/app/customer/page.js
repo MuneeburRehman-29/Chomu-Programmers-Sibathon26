@@ -27,8 +27,8 @@ export default function CustomerPage() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+      <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-150 bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
         <div className="w-full max-w-lg relative z-10 bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 flex flex-col items-center gap-5 sm:gap-6 text-center">
           <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center text-5xl">
             ✅
@@ -50,14 +50,14 @@ export default function CustomerPage() {
   }
 
   return (
-    <main className="h-screen bg-gradient-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+    <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-150 bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
 
       <div className="w-full max-w-4xl relative z-10 max-h-full">
-        <div className="bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl sm:rounded-[2.5rem] shadow-2xl p-5 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 md:gap-8">
+        <div className="bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-5 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 md:gap-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="space-y-1 sm:space-y-2">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400 tracking-tight">
                 Submit Feedback
               </h1>
               <p className="text-text-secondary text-sm sm:text-base font-medium">

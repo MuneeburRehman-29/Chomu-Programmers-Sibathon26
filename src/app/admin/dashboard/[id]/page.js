@@ -188,7 +188,7 @@ export default function FeedbackDetailPage({ params }) {
             <div className="border-t border-elevated pt-6">
               {analyzing && !analysisData && (
                 <div className="flex flex-col items-center gap-3 py-10">
-                  <span className="text-3xl animate-spin">⏳</span>
+                  <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
                   <p className="text-text-secondary font-medium">
                     Running AI analysis...
                   </p>
@@ -215,7 +215,7 @@ export default function FeedbackDetailPage({ params }) {
   if (!feedback && !notFound) {
     return (
       <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-        <p className="text-text-secondary">Loading feedback...</p>
+        <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
       </main>
     );
   }
@@ -271,7 +271,7 @@ export default function FeedbackDetailPage({ params }) {
           <div className="border-t border-elevated pt-6">
             {analyzing && !feedback.analysis && (
               <div className="flex flex-col items-center gap-3 py-10">
-                <span className="text-3xl animate-spin">⏳</span>
+                <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
                 <p className="text-text-secondary font-medium">
                   Running AI analysis...
                 </p>

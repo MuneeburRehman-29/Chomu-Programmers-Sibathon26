@@ -23,42 +23,28 @@ export default function ResultPage() {
 
   if (!data) {
     return (
-      <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-        <p className="text-text-secondary">Loading results...</p>
+      <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+        <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-primary-bg flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-xl bg-secondary-bg rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 relative">
-        {/* Back to Dashboard icon */}
-        <Link
-          href="/admin/dashboard"
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-elevated transition-colors group"
-          title="Back to Dashboard"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-text-muted group-hover:text-accent transition-colors"
+    <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex flex-col items-center justify-center p-6 relative overflow-hidden">
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-150 bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+      <div className="w-full max-w-xl relative z-10 bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl sm:text-3xl font-bold text-accent">Results</h1>
+          <Link
+            href="/admin/dashboard"
+            className="text-text-muted hover:text-accent text-sm transition-colors"
           >
-            <path d="M19 12H5" />
-            <polyline points="12 19 5 12 12 5" />
-          </svg>
-        </Link>
-
-        <h1 className="text-3xl font-bold text-accent mb-2 text-center">Results</h1>
+            ← Dashboard
+          </Link>
+        </div>
         <ResultsDisplay data={data} />
-        <Link href="/customer" className="mt-6 text-accent hover:text-accent-hover hover:underline text-center transition-colors">
-          Back to Input
+        <Link href="/customer" className="text-accent hover:text-accent-hover hover:underline text-center text-sm transition-colors">
+          ← Back to Feedback
         </Link>
       </div>
     </main>

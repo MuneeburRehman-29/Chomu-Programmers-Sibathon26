@@ -56,7 +56,7 @@ export default function InputSection({ onAnalyze, loading }) {
       >
         {loading ? (
           <>
-            <span className="inline-block animate-spin">⏳</span>
+            <div className="w-5 h-5 border-2 border-text-on-accent border-t-transparent rounded-full animate-spin" />
             <span>Submitting...</span>
           </>
         ) : (

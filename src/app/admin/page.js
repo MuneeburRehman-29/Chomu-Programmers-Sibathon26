@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
   // Don't render the login form while checking auth
   if (checking) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-primary-bg via-gray-900 to-black flex items-center justify-center">
+      <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex items-center justify-center">
         <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
       </main>
     );
@@ -61,8 +61,8 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-primary-bg via-gray-900 to-black flex items-center justify-center p-6 relative overflow-hidden">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+    <main className="min-h-screen bg-linear-to-br from-primary-bg via-gray-900 to-black flex items-center justify-center p-6 relative overflow-hidden">
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-150 bg-accent/20 rounded-full blur-[100px] opacity-50 pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10">
         <div className="bg-secondary-bg/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10 flex flex-col gap-6 sm:gap-8">
