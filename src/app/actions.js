@@ -98,6 +98,28 @@ export async function createPendingTicket(email, text) {
   return { success: true };
 }
 
+// Submit a fully analyzed ticket (analyze first, then save)
+export async function submitAnalyzedTicket(email, text, analysis) {
+  const { error } = await supabase.from("tickets").insert([
+    {
+      email,
+      customer_text: text,
+      urgency: analysis.urgency,
+      sentiment: analysis.sentiment,
+      summary: analysis.summary,
+      drafts: analysis.drafts,
+      final_response: null,
+    },
+  ]);
+
+  if (error) {
+    console.error("DB Error:", error);
+    return { success: false, error: error.message };
+  }
+
+  return { success: true };
+}
+
 // Update a ticket with AI analysis results
 export async function updateTicketAnalysis(ticketId, analysis) {
   const { error } = await supabase
