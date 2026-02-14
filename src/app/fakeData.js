@@ -2,6 +2,7 @@
 export const dummyResponse = {
   urgency: 65,
   sentiment: "Frustrated",
+  summary: "Customer is frustrated with repeated billing errors and lack of follow-up from support.",
   drafts: {
     empathetic: {
       preview: "We sincerely apologize for the inconvenience you've experienced...",

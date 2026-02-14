@@ -53,6 +53,7 @@ export default function FeedbackDetailPage({ params }) {
               setAnalysisData({
                 urgency: found.urgency,
                 sentiment: found.sentiment,
+                summary: found.summary,
                 drafts: found.drafts,
               });
             }
@@ -178,7 +179,9 @@ export default function FeedbackDetailPage({ params }) {
                 {dbTicket.email || "N/A"}
               </span>
               <p className="text-text-secondary text-sm leading-relaxed border-l-2 border-accent/30 pl-4">
-                {dbTicket.customer_text}
+                {dbTicket.customer_text.length > 200
+                  ? dbTicket.customer_text.substring(0, 200) + "..."
+                  : dbTicket.customer_text}
               </p>
             </div>
 
@@ -258,7 +261,9 @@ export default function FeedbackDetailPage({ params }) {
               {feedback.email}
             </span>
             <p className="text-text-secondary text-sm leading-relaxed border-l-2 border-accent/30 pl-4">
-              {feedback.text}
+              {feedback.text.length > 200
+                ? feedback.text.substring(0, 200) + "..."
+                : feedback.text}
             </p>
           </div>
 

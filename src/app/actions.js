@@ -20,7 +20,8 @@ export async function analyzeTicket(text) {
 Return a JSON object with exactly these keys:
 1. "urgency": (integer 0-100)
 2. "sentiment": (string, e.g., "Angry", "Frustrated", "Calm")
-3. "drafts": (object with keys: "empathetic", "professional", "concise").
+3. "summary": (string, 1-2 sentence summary of the customer's core issue/feedback)
+4. "drafts": (object with keys: "empathetic", "professional", "concise").
    - "empathetic": A very apologetic response.
    - "professional": A solution-focused response.
    - "concise": A short, direct response (max 2 sentences).
@@ -104,6 +105,7 @@ export async function updateTicketAnalysis(ticketId, analysis) {
     .update({
       urgency: analysis.urgency,
       sentiment: analysis.sentiment,
+      summary: analysis.summary,
       drafts: analysis.drafts,
     })
     .eq("id", ticketId);
