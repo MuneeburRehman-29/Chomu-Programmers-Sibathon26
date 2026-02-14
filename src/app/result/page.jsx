@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export default function ResultPage() {
   const [data, setData] = useState(null);
   const [originalText, setOriginalText] = useState("");
+  const [isFallback, setIsFallback] = useState(false);
 
   useEffect(() => {
     // Load real analysis results from sessionStorage, fall back to dummy data
@@ -18,6 +19,7 @@ export default function ResultPage() {
       setOriginalText(storedText || "");
     } else {
       setData(dummyResponse);
+      setIsFallback(true);
     }
   }, []);
 
@@ -42,6 +44,11 @@ export default function ResultPage() {
             ← Dashboard
           </Link>
         </div>
+        {isFallback && (
+          <div className="bg-yellow-900/30 border border-yellow-700 rounded-xl px-4 py-3 text-yellow-300 text-sm">
+            ⚠️ AI analysis failed or no result was found. Showing sample data for preview purposes.
+          </div>
+        )}
         <ResultsDisplay data={data} />
         <Link href="/customer" className="text-accent hover:text-accent-hover hover:underline text-center text-sm transition-colors">
           ← Back to Feedback

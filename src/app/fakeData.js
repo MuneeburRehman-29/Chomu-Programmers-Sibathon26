@@ -1,4 +1,5 @@
-// Fallback dummy data used when no real analysis result is available in sessionStorage
+// Fallback dummy data shown when AI analysis failed or no result is available in sessionStorage.
+// NOTE: This is sample/placeholder data — not a real AI response.
 export const dummyResponse = {
   urgency: 65,
   sentiment: "Frustrated",
